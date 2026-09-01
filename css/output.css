@@ -2163,51 +2163,141 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   line-height: 1.6;
   color: var(--text-secondary);
 }
-.tld-list {
+.features-grid {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background-color: var(--border);
+  background-color: #27272a;
+  border-radius: 1rem;
+  overflow: hidden;
 }
-.tld-row {
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem 1.5rem;
+  background-color: #121214;
+  border: 1px solid #27272a;
+  transition: all .2s ease-out;
+}
+.feature-card:hover {
+  background-color: #18181b;
+  border-color: rgba(6,182,212,0.5);
+  transform: translateY(-2px);
+}
+.feature-icon {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  background-color: var(--bg-elevated);
-  padding: 1.25rem 1.5rem;
-  transition: border-color .15s ease-out;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: rgba(6,182,212,0.1);
+  color: #06b6d4;
+  flex-shrink: 0;
+}
+.feature-title {
+  font-family: "Syne", "Inter", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: .9375rem;
+  color: #ffffff;
+  margin-top: 1rem;
+  letter-spacing: -0.01em;
+}
+.feature-desc {
+  font-size: .875rem;
+  color: #a1a1aa;
+  line-height: 1.65;
+  margin-top: .5rem;
+}
+.tld-list {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background-color: #161618;
+}
+.tld-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.125rem 1.5rem;
+  border-bottom: 1px solid #27272a;
+  background-color: #161618;
+  transition: background-color .15s ease-out;
+}
+.tld-row:last-child {
+  border-bottom: none;
 }
 .tld-row:hover {
-  border-color: rgba(255,255,255,0.12);
+  background-color: #1a1a1e;
 }
 .tld-name {
-  font-family: "JetBrains Mono", "Menlo", monospace;
-  font-weight: 600;
-  font-size: 1.125rem;
-  color: var(--text-primary);
+  font-family: "Inter", "system-ui", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  letter-spacing: -0.01em;
 }
 .tld-price {
-  font-size: .875rem;
-  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .8125rem;
+  line-height: 1.5;
 }
-.tld-price strong {
-  color: var(--text-primary);
+.tld-price .label {
+  color: #a1a1aa;
+  font-weight: 400;
+}
+.tld-price .amount {
+  color: #ffffff;
   font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.tld-price .sep {
+  color: #52525b;
 }
 .tld-link {
-  font-size: .875rem;
-  font-weight: 600;
-  color: var(--accent);
-  text-decoration: none;
-  transition: color .15s ease-out;
-  min-height: 44px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0,240,255,0.25);
+  background-color: rgba(0,240,255,0.06);
+  color: var(--accent);
+  font-size: .8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all .2s ease-out;
+  min-height: 36px;
 }
 .tld-link:hover {
-  color: var(--accent);
-  @supports (color: color-mix(in lab, red, red)) {
-    color: color-mix(in srgb, var(--accent) 70%, #000);
+  background-color: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+}
+@media (max-width: 640px) {
+  .tld-row {
+    grid-template-columns: 1fr;
+    gap: .75rem;
+    padding: 1rem 1.25rem;
+  }
+  .tld-link {
+    justify-self: start;
   }
 }
 .steps-grid {
@@ -2399,9 +2489,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 }
 .list-disc {
   list-style-type: disc;
-}
-.grid-cols-1 {
-  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 .flex-col {
   flex-direction: column;
