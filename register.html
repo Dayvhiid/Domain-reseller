@@ -1,0 +1,28 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Create account — DomainPlatform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/output.css">
+</head>
+<body class="bg-app text-primary">
+<header class="sticky top-0 z-40 material-thick border-b border-separator"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"><a href="index.html" class="font-bold flex gap-2 items-center text-label"><span class="w-8 h-8 bg-accent-500 text-brand-900 grid place-items-center rounded-lg">◈</span> DomainPlatform</a><a href="login.html" class="text-sm font-medium text-secondary-label">Already have an account? <span class="text-accent-bright font-semibold">Log in</span></a></div></header>
+<main class="max-w-md mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="card p-8">
+<h1 class="text-title-2 font-outfit font-bold">Create your account</h1>
+<p class="text-subheadline text-secondary-label mt-1">No real account created — frontend prototype.</p>
+<form class="mt-6 space-y-4" data-validate novalidate onsubmit="event.preventDefault(); const p=document.getElementById('pwd').value, cp=document.getElementById('cpwd').value; if(p!==cp){toast('Passwords do not match','error'); return;} if(!this.checkValidity()){this.reportValidity(); return;} toast('Account created (mock). Redirecting...','success'); setTimeout(()=>location.href='client-dashboard.html',600);">
+<div><label class="label" for="name">Full name</label><input id="name" required class="input" placeholder="Ada Lovelace"/><p data-error hidden class="error-text mt-1">Required</p></div>
+<div><label class="label" for="email">Email</label><input id="email" type="email" required class="input" placeholder="ada@example.com"/><p data-error hidden class="error-text mt-1">Valid email required</p></div>
+<div><label class="label" for="pwd">Password</label><input id="pwd" type="password" required minlength="6" class="input"/><p data-error hidden class="error-text mt-1">Min 6 characters</p></div>
+<div><label class="label" for="cpwd">Confirm password</label><input id="cpwd" type="password" required class="input"/><p data-error hidden class="error-text mt-1">Required</p></div>
+<label class="flex items-start gap-2 text-subheadline text-secondary-label"><input type="checkbox" required class="mt-1 accent-brand-500"/> I agree to the <a href="legal/terms.html" class="underline text-brand-500">Terms</a> and <a href="legal/privacy.html" class="underline text-brand-500">Privacy Policy</a>.</label>
+<button type="submit" class="btn btn-primary w-full">Create account</button>
+</form>
+</div>
+</main>
+<div id="toast-container" class="fixed bottom-4 right-4 z-50 w-80 space-y-2 pointer-events-none"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

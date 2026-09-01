@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cart — DomainPlatform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/output.css">
+</head>
+<body class="bg-app text-primary">
+<header class="sticky top-0 z-40 material-thick border-b border-separator"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"><a href="index.html" class="font-bold flex gap-2 items-center text-label"><span class="w-8 h-8 bg-accent-500 text-brand-900 grid place-items-center rounded-lg">◈</span> DomainPlatform</a><nav class="hidden lg:flex gap-1 text-sm text-secondary-label"><a href="domains.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Domains</a><a href="pricing.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Pricing</a></nav><a href="checkout.html" class="btn btn-primary btn-sm">Checkout</a><button id="mobile-menu-button" class="lg:hidden  p-3 flex items-center justify-center min-h-[44px] min-w-[44px]  border border-opaque-separator text-label rounded-lg ml-2" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">☰</button></div><div id="mobile-menu" class="hidden lg:hidden bg-system text-label border-t border-opaque-separator px-4 py-3"><a href="pricing.html" class="block py-2 hover:bg-system-fill">Pricing</a></div></header>
+<main id="cart-root" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<h1 class="text-title-1 font-outfit font-bold">Your cart</h1>
+<p class="text-body text-secondary-label mt-2">Persisted in localStorage — mock cart, no real payment.</p>
+<div id="cart-empty" class="mt-8 card p-10 text-center" hidden>
+<p class="font-medium text-label">Your cart is empty</p><p class="text-subheadline text-secondary-label mt-1">Search for a domain to get started.</p><a href="index.html" class="mt-4 btn btn-primary">Search domains</a>
+</div>
+<div id="cart-list" class="mt-6 space-y-3"></div>
+<div id="cart-summary" class="mt-6 grid lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2"><button id="cart-clear" class="text-callout text-secondary-label hover:text-danger transition-colors">Clear cart</button></div>
+<div class="card p-6 space-y-3">
+<div class="flex justify-between text-subheadline"><span class="text-secondary-label">Subtotal</span><span id="cart-subtotal" class="font-semibold text-label">—</span></div>
+<div class="flex justify-between text-subheadline"><span class="text-secondary-label">Taxes</span><span id="cart-tax" class="font-semibold text-label">—</span></div>
+<div class="text-caption-1 text-quaternary-label">Tax placeholder — real calculation server-side.</div>
+<div class="border-t border-separator pt-3 flex justify-between font-bold text-label text-title-3 font-outfit"><span>Total</span><span id="cart-total">—</span></div>
+<a href="checkout.html" class="mt-2 btn btn-primary w-full justify-center">Proceed to checkout</a>
+<a href="index.html" class="btn btn-outline w-full justify-center">Continue shopping</a>
+</div>
+</div>
+</main>
+<div id="toast-container" class="fixed bottom-4 right-4 z-50 w-80 space-y-2 pointer-events-none"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Support — DomainPlatform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/output.css">
+</head>
+<body class="bg-app text-primary">
+<header class="sticky top-0 z-40 material-thick border-b border-separator"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"><a href="index.html" class="font-bold flex gap-2 items-center text-label"><span class="w-8 h-8 bg-accent-500 text-brand-900 grid place-items-center rounded-lg">◈</span> DomainPlatform</a><nav class="hidden lg:flex gap-1 text-sm font-medium text-secondary-label"><a href="support.html" class="px-3 py-2 bg-system-fill text-label rounded-lg">Support</a><a href="domains.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Domains</a><a href="pricing.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Pricing</a></nav><div class="flex items-center gap-2"><a href="cart.html" class="relative p-2 text-tertiary-label hover:bg-system-fill hover:text-label rounded-lg transition-colors" aria-label="Cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6h15l-1.5 9h-13z"/><path d="M6 6L5 2H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg><span data-cart-count class="hidden absolute -top-1 -right-1 bg-accent-500 text-brand-900 text-xs w-5 h-5 grid place-items-center rounded-full">0</span></a><a href="login.html" class="px-4 py-2 text-sm font-medium border border-opaque-separator rounded-lg text-secondary-label hover:bg-system-fill hover:text-label transition-colors">Log in</a><button id="mobile-menu-button" class="lg:hidden  p-3 flex items-center justify-center min-h-[44px] min-w-[44px]  border border-opaque-separator text-label rounded-lg" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">☰</button></div></div><div id="mobile-menu" class="hidden lg:hidden bg-system text-label border-t border-opaque-separator px-4 py-3"><a href="faq.html" class="block py-2 hover:bg-system-fill">FAQ</a></div></header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<h1 class="text-title-1 font-outfit font-bold">Help center</h1>
+<div class="mt-6 flex gap-2 max-w-xl"><input type="search" placeholder="Search help, e.g. renew" class="flex-1 input"/><button class="btn btn-secondary bg-system text-label hover:bg-system-fill">Search</button></div>
+<div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<a href="faq.html" class="card p-6 hover-lift"><h3 class="font-semibold text-label">Domains</h3><p class="text-subheadline text-secondary-label mt-1">Registration, renewal, expiration</p></a>
+<a href="faq.html" class="card p-6 hover-lift"><h3 class="font-semibold text-label">Transfers</h3><p class="text-subheadline text-secondary-label mt-1">Move domains in or out</p></a>
+<a href="faq.html" class="card p-6 hover-lift"><h3 class="font-semibold text-label">DNS</h3><p class="text-subheadline text-secondary-label mt-1">Records, nameservers</p></a>
+<a href="faq.html" class="card p-6 hover-lift"><h3 class="font-semibold text-label">Billing</h3><p class="text-subheadline text-secondary-label mt-1">Invoices, payment mock</p></a>
+<a href="faq.html" class="card p-6 hover-lift"><h3 class="font-semibold text-label">Account</h3><p class="text-subheadline text-secondary-label mt-1">Login, contacts, privacy</p></a>
+<div class="card p-6 bg-brand-500 text-label"><h3 class="font-semibold text-label">Contact support</h3><p class="text-subheadline text-label/80 mt-1">We'll reply by email — placeholder.</p><a href="contact.html" class="mt-3 btn btn-secondary bg-white text-brand-500 hover:bg-secondary-system-background">Contact us</a></div>
+</div>
+<div class="mt-8 card p-6 hover-lift"><h2 class="font-semibold text-label">Popular questions</h2><ul class="mt-3 space-y-2 text-subheadline"><li><a href="faq.html" class="text-brand-500 hover:underline">How does domain renewal pricing work?</a></li><li><a href="faq.html" class="text-brand-500 hover:underline">How do I change nameservers?</a></li><li><a href="transfer-domain.html" class="text-brand-500 hover:underline">Can I transfer a .ng domain?</a></li></ul></div>
+</main>
+<div id="toast-container" class="fixed bottom-4 right-4 z-50 w-80 space-y-2 pointer-events-none"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

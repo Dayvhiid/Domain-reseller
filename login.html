@@ -1,0 +1,28 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Log in — DomainPlatform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/output.css">
+</head>
+<body class="bg-app text-primary">
+<header class="sticky top-0 z-40 material-thick border-b border-separator"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"><a href="index.html" class="font-bold flex gap-2 items-center text-label"><span class="w-8 h-8 bg-accent-500 text-brand-900 grid place-items-center rounded-lg">◈</span> DomainPlatform</a><a href="register.html" class="text-sm font-medium text-secondary-label">Need an account? <span class="text-accent-bright font-semibold">Create one</span></a></div></header>
+<main class="max-w-md mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="card p-8">
+<h1 class="text-title-2 font-outfit font-bold">Welcome back</h1>
+<p class="text-subheadline text-secondary-label mt-1">Frontend validation only — real auth will be WordPress/WHMCS/SSO later.</p>
+<form class="mt-6 space-y-4" data-validate novalidate onsubmit="event.preventDefault(); if(this.checkValidity()){ toast('Logged in (mock). Redirecting to dashboard...','success'); setTimeout(()=>location.href='client-dashboard.html',600); }">
+<div><label class="label" for="email">Email</label><input id="email" type="email" required placeholder="you@example.com" class="input"/><p data-error hidden class="error-text mt-1">Valid email required</p></div>
+<div><label class="label" for="pwd">Password</label><input id="pwd" type="password" required class="input"/><p data-error hidden class="error-text mt-1">Password required</p></div>
+<label class="flex items-center gap-2 text-subheadline text-secondary-label"><input type="checkbox" class="rounded accent-brand-500"/> Remember me</label>
+<button type="submit" class="btn btn-primary w-full">Log in</button>
+<a href="#" onclick="toast('Password reset is mock — real flow server-side.','default'); return false;" class="block text-center text-callout text-brand-500 mt-2">Forgot password?</a>
+</form>
+</div>
+<p class="text-caption-2 text-quaternary-label text-center mt-4">No real authentication yet. UI is structured for future WordPress integration.</p>
+</main>
+<div id="toast-container" class="fixed bottom-4 right-4 z-50 w-80 space-y-2 pointer-events-none"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

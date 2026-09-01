@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Search results — Domain Reseller</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/output.css">
+</head>
+<body class="bg-app text-primary antialiased">
+<header class="sticky top-0 z-40 material-thick border-b border-separator">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+<a href="index.html" class="flex items-center gap-2 font-bold text-xl text-label"><span class="w-8 h-8 rounded-lg bg-accent-500 text-brand-900 grid place-items-center text-sm">◈</span> DomainPlatform</a>
+<nav class="hidden lg:flex gap-1 text-sm font-medium text-secondary-label"><a href="domains.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Domains</a><a href="pricing.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Pricing</a><a href="transfer-domain.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Transfer</a><a href="whois.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">WHOIS</a><a href="support.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Support</a></nav>
+<div class="flex items-center gap-2"><a href="cart.html" class="relative p-2 text-tertiary-label hover:bg-system-fill hover:text-label rounded-lg transition-colors" aria-label="Cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-13z"/><path d="M6 6L5 2H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg><span data-cart-count class="hidden absolute -top-1 -right-1 bg-accent-500 text-brand-900 text-xs w-5 h-5 grid place-items-center rounded-full">0</span></a><a href="login.html" class="hidden sm:inline px-4 py-2 text-sm font-medium text-tertiary-label hover:bg-system-fill hover:text-label rounded-lg transition-colors">Log in</a><a href="register.html" class="btn btn-primary btn-sm">Create account</a><button id="mobile-menu-button" class="lg:hidden  p-3 flex items-center justify-center min-h-[44px] min-w-[44px]  border border-opaque-separator text-label rounded-lg" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">☰</button></div>
+</div>
+<div id="mobile-menu" class="hidden lg:hidden border-t border-opaque-separator bg-system text-label px-4 py-3 space-y-1"><a href="domains.html" class="block px-3 py-3 hover:bg-system-fill rounded-lg">Domains</a><a href="pricing.html" class="block px-3 py-3 hover:bg-system-fill rounded-lg">Pricing</a><a href="transfer-domain.html" class="block px-3 py-3 hover:bg-system-fill rounded-lg">Transfer</a><a href="whois.html" class="block px-3 py-3 hover:bg-system-fill rounded-lg">WHOIS</a><a href="support.html" class="block px-3 py-3 hover:bg-system-fill rounded-lg">Support</a></div>
+</header>
+<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<nav class="text-caption-1 text-tertiary-label mb-4"><a href="index.html" class="hover:underline">Home</a> › Search results</nav>
+<h1 class="text-title-2 font-outfit font-bold">Domain search results</h1>
+<form id="results-search-form" class="mt-4 card p-2 flex flex-col sm:flex-row gap-2 shadow-level-1">
+<label for="results-search-input" class="sr-only">Search domain</label>
+<input id="results-search-input" type="search" placeholder="try mybrand" class="flex-1 input" required />
+<button type="submit" class="btn btn-primary">Search</button>
+<a href="cart.html" class="btn btn-outline justify-center items-center">View cart</a>
+</form>
+<div id="results-loading" class="mt-6 card p-8 flex items-center gap-3 text-secondary-label" hidden><span class="w-5 h-5 border-2 border-tertiary-label border-t-brand-500 rounded-full animate-spin"></span> Checking availability across registries… (mock)</div>
+<div id="search-results-root" class="sr-only"></div>
+<div id="results-container" class="mt-6 space-y-6"></div>
+<p class="text-caption-2 text-quaternary-label mt-6">Mock results only — real availability requires server-side registrar API.</p>
+</main>
+<footer class="bg-secondary-system-background text-label mt-12"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-caption-2 text-tertiary-label flex flex-col sm:flex-row justify-between gap-2"><span>© 2026 DomainPlatform — Mock search</span><span><a href="pricing.html" class="hover:text-label hover:underline">Pricing</a> · <a href="legal/terms.html" class="hover:text-label hover:underline">Terms</a></span></div></footer>
+<div id="toast-container" class="fixed bottom-4 right-4 z-50 space-y-2 w-80 pointer-events-none"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

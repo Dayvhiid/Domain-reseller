@@ -1,0 +1,83 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Domain details — DomainPlatform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/output.css">
+</head>
+<body class="bg-app text-primary">
+<header class="sticky top-0 z-40 material-thick border-b border-separator"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"><a href="index.html" class="font-bold flex gap-2 items-center text-label"><span class="w-8 h-8 bg-accent-500 text-brand-900 grid place-items-center rounded-lg">◈</span> DomainPlatform</a><a href="client-dashboard.html" class="px-4 py-2 text-sm border border-opaque-separator rounded-lg text-secondary-label hover:bg-system-fill hover:text-label transition-colors">← Dashboard</a></div></header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+<div class="flex flex-wrap items-start justify-between gap-4">
+<div><h1 class="text-title-2 font-outfit font-bold mono">mybusiness.com</h1><div class="flex items-center gap-2 mt-2"><span class="badge badge-success">Active</span><span class="text-caption-1 text-tertiary-label">Registered 2023-08-12 · Expires 2027-08-12</span></div></div>
+<div class="flex items-center gap-3"><span class="text-subheadline">Auto-renew</span><button data-toggle aria-pressed="true" class="w-11 h-6 rounded-full bg-brand-500 relative transition-colors"><span data-toggle-knob class="absolute top-0.5 left-0.5 w-5 h-5 bg-keep rounded-full shadow translate-x-5 transition-transform"></span></button></div>
+</div>
+<div class="mt-6 flex gap-2 overflow-x-auto text-sm border-b border-separator">
+<button data-tab-button="overview" aria-selected="true" class="px-4 py-3 border-b-2 border-brand-500 font-semibold text-label">Overview</button>
+<button data-tab-button="dns" aria-selected="false" class="px-4 py-3 border-b-2 border-transparent text-tertiary-label hover:text-label transition-colors">DNS</button>
+<button data-tab-button="ns" aria-selected="false" class="px-4 py-3 border-b-2 border-transparent text-tertiary-label hover:text-label transition-colors">Nameservers</button>
+<button data-tab-button="contact" aria-selected="false" class="px-4 py-3 border-b-2 border-transparent text-tertiary-label hover:text-label transition-colors">Contact / WHOIS</button>
+<button data-tab-button="renew" aria-selected="false" class="px-4 py-3 border-b-2 border-transparent text-tertiary-label hover:text-label transition-colors">Renewal</button>
+<button data-tab-button="transfer" aria-selected="false" class="px-4 py-3 border-b-2 border-transparent text-tertiary-label hover:text-label transition-colors">Transfer Out</button>
+</div>
+
+<div data-tab-panel="overview" class="mt-6 grid lg:grid-cols-3 gap-6">
+<div class="card p-6 lg:col-span-2 hover-lift"><h2 class="font-semibold text-label">Overview</h2><dl class="mt-4 grid sm:grid-cols-2 gap-4 text-subheadline"><div><dt class="text-tertiary-label">Registrar</dt><dd class="font-medium text-label">DomainPlatform (reseller)</dd></div><div><dt class="text-tertiary-label">Status</dt><dd class="font-medium text-label">clientTransferProhibited (mock)</dd></div><div><dt class="text-tertiary-label">Auto-renew</dt><dd class="font-medium text-label">Enabled</dd></div><div><dt class="text-tertiary-label">Privacy</dt><dd class="font-medium text-label">Enabled — WHOIS redacted</dd></div></dl></div>
+<div class="card p-6 hover-lift"><h3 class="font-semibold text-label">Security / Privacy</h3><div class="mt-3 space-y-3 text-subheadline"><label class="flex justify-between items-center">Registrar lock <button data-toggle aria-pressed="true" class="w-11 h-6 rounded-full bg-brand-500 relative"><span data-toggle-knob class="absolute top-0.5 left-0.5 w-5 h-5 bg-keep rounded-full translate-x-5"></span></button></label><label class="flex justify-between items-center">WHOIS privacy <button data-toggle aria-pressed="true" class="w-11 h-6 rounded-full bg-brand-500 relative"><span data-toggle-knob class="absolute top-0.5 left-0.5 w-5 h-5 bg-keep rounded-full translate-x-5"></span></button></label></div></div>
+</div>
+
+<div data-tab-panel="dns" hidden class="mt-6 card overflow-hidden hover-lift">
+<div class="p-5 border-b border-separator flex justify-between items-center"><h2 class="font-semibold text-label">DNS records (mock)</h2><button onclick="toast('Add record is mock — real DNS requires server-side API','default')" class="btn btn-primary btn-sm">+ Add record</button></div>
+<div class="overflow-x-auto">
+<table class="w-full text-subheadline min-w-[640px]"><thead class="bg-secondary-system-background text-caption-1 uppercase tracking-wide text-tertiary-label"><tr><th class="text-left py-3 px-4">Type</th><th class="text-left py-3 px-4">Host</th><th class="text-left py-3 px-4">Value</th><th class="text-left py-3 px-4">TTL</th><th class="text-left py-3 px-4"></th></tr></thead>
+<tbody>
+<tr class="border-t border-separator"><td class="py-3 px-4 mono">A</td><td class="py-3 px-4">@</td><td class="py-3 px-4 mono">76.76.21.21</td><td class="py-3 px-4">3600</td><td class="py-3 px-4 flex gap-2"><button onclick="toast('Edit mock')" class="text-callout text-brand-500 hover:underline">Edit</button><button onclick="toast('Delete requires confirmation mock','error')" class="text-callout text-danger hover:underline">Delete</button></td></tr>
+<tr class="border-t border-separator"><td class="py-3 px-4 mono">CNAME</td><td class="py-3 px-4">www</td><td class="py-3 px-4 mono">mybusiness.com</td><td class="py-3 px-4">3600</td><td class="py-3 px-4 flex gap-2"><button class="text-callout text-brand-500 hover:underline">Edit</button><button class="text-callout text-danger hover:underline">Delete</button></td></tr>
+<tr class="border-t border-separator"><td class="py-3 px-4 mono">MX</td><td class="py-3 px-4">@</td><td class="py-3 px-4 mono">mail.mybusiness.com (10)</td><td class="py-3 px-4">3600</td><td class="py-3 px-4 flex gap-2"><button class="text-callout text-brand-500 hover:underline">Edit</button><button class="text-callout text-danger hover:underline">Delete</button></td></tr>
+<tr class="border-t border-separator"><td class="py-3 px-4 mono">TXT</td><td class="py-3 px-4">@</td><td class="py-3 px-4 mono">v=spf1 include:_spf.example.com ~all</td><td class="py-3 px-4">3600</td><td class="py-3 px-4 flex gap-2"><button class="text-callout text-brand-500 hover:underline">Edit</button><button class="text-callout text-danger hover:underline">Delete</button></td></tr>
+</tbody></table>
+</div>
+</div>
+
+<div data-tab-panel="ns" hidden class="mt-6 card p-6 hover-lift">
+<h2 class="font-semibold text-label">Nameservers</h2>
+<div class="mt-4 space-y-3">
+<label class="flex gap-3 border border-separator rounded-lg p-3 has-[:checked]:border-brand-500 has-[:checked]:bg-brand-500/10 transition-colors"><input type="radio" name="ns" checked class="accent-brand-500"/> <span class="text-subheadline"><span class="font-medium text-label">Default nameservers</span><br><span class="text-tertiary-label mono text-caption-1">ns1.domainplatform.example · ns2.domainplatform.example</span></span></label>
+<label class="flex gap-3 border border-separator rounded-lg p-3 has-[:checked]:border-brand-500 has-[:checked]:bg-brand-500/10 transition-colors"><input type="radio" name="ns" class="accent-brand-500"/> <span class="text-subheadline font-medium text-label">Custom nameservers</span></label>
+</div>
+<div class="mt-4 grid sm:grid-cols-2 gap-3">
+<input placeholder="ns1.custom.example" class="input"/>
+<input placeholder="ns2.custom.example" class="input"/>
+</div>
+<button onclick="toast('Nameservers saved (mock)','success')" class="mt-4 btn btn-primary">Save nameservers</button>
+</div>
+
+<div data-tab-panel="contact" hidden class="mt-6 card p-6 hover-lift">
+<h2 class="font-semibold text-label">Registrant / WHOIS contact (mock)</h2>
+<p class="text-caption-1 text-tertiary-label mt-1">Privacy redacted where enabled — real updates require server-side validation.</p>
+<div class="mt-4 grid sm:grid-cols-2 gap-4">
+<div><label class="label">Registrant name</label><input value="Redacted for privacy" class="input bg-tertiary-system-fill"/></div>
+<div><label class="label">Email</label><input value="redacted@example.com" class="input bg-tertiary-system-fill"/></div>
+</div>
+<button onclick="toast('Contact update mock','success')" class="mt-4 btn btn-outline">Update contact (mock)</button>
+</div>
+
+<div data-tab-panel="renew" hidden class="mt-6 card p-6 hover-lift">
+<h2 class="font-semibold text-label">Renewal</h2>
+<p class="text-subheadline text-secondary-label mt-2">Renewal price: $14.99/yr. Auto-renew is currently enabled.</p>
+<div class="mt-4 flex gap-3"><select class="input"><option>1 year — $14.99</option><option>2 years — $29.98</option><option>5 years — $74.95</option></select><button onclick="toast('Renewed (mock) — no charge','success')" class="btn btn-primary">Renew now (mock)</button></div>
+</div>
+
+<div data-tab-panel="transfer" hidden class="mt-6 card p-6 border-warning/20 bg-warning/10 hover-lift">
+<h2 class="font-semibold text-label">Transfer out</h2>
+<p class="text-subheadline text-secondary-label mt-2">To transfer away you'll need the auth/EPP code. Domain must be unlocked.</p>
+<button onclick="if(confirm('Generate EPP code (mock)?')) toast('EPP code generated (mock): ABC-XYZ-123 — would be emailed in production','success')" class="mt-3 btn btn-secondary bg-system text-label hover:bg-system-fill">Generate auth code (mock)</button>
+<p class="text-caption-2 text-warning mt-2">Destructive actions require confirmation — never auto-execute in frontend.</p>
+</div>
+
+</main>
+<div id="toast-container" class="fixed bottom-4 right-4 z-50 w-80 space-y-2 pointer-events-none"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

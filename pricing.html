@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Pricing — DomainPlatform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/output.css">
+</head>
+<body class="bg-app text-primary">
+<header class="sticky top-0 z-40 material-thick border-b border-separator"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"><a href="index.html" class="font-bold flex gap-2 items-center text-label"><span class="w-8 h-8 bg-accent-500 text-brand-900 grid place-items-center rounded-lg">◈</span> DomainPlatform</a><nav class="hidden lg:flex gap-1 text-sm font-medium text-secondary-label"><a href="domains.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Domains</a><a href="pricing.html" class="px-3 py-2 bg-system-fill text-label rounded-lg">Pricing</a><a href="transfer-domain.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Transfer</a><a href="whois.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">WHOIS</a><a href="support.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Support</a></nav><div class="flex gap-2 items-center"><a href="cart.html" class="relative p-2 text-tertiary-label hover:bg-system-fill hover:text-label rounded-lg transition-colors" aria-label="Cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6h15l-1.5 9h-13z"/><path d="M6 6L5 2H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg><span data-cart-count class="hidden absolute -top-1 -right-1 bg-accent-500 text-brand-900 text-xs w-5 h-5 grid place-items-center rounded-full">0</span></a><a href="login.html" class="hidden sm:inline px-4 py-2 text-sm font-medium text-tertiary-label hover:bg-system-fill hover:text-label rounded-lg transition-colors">Log in</a><a href="register.html" class="btn btn-primary btn-sm">Create account</a><button id="mobile-menu-button" class="lg:hidden  p-3 flex items-center justify-center min-h-[44px] min-w-[44px]  border border-opaque-separator text-label rounded-lg" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">☰</button></div></div><div id="mobile-menu" class="hidden lg:hidden border-t border-opaque-separator px-4 py-3 bg-system text-label"><a href="domains.html" class="block py-2 hover:bg-system-fill">Domains</a><a href="support.html" class="block py-2 hover:bg-system-fill">Support</a></div></header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<h1 class="text-title-1 font-outfit font-bold">Transparent domain pricing</h1>
+<p class="text-body text-secondary-label mt-2 max-w-2xl">Registration and renewal pricing shown together — no "from" tricks. Transfer pricing included where applicable. Prices in USD, taxes shown at checkout (placeholder).</p>
+<div class="mt-6 flex flex-col sm:flex-row gap-3">
+<input id="pricing-search" type="search" placeholder="Filter by extension, e.g. .com" class="flex-1 input" />
+<select id="pricing-category" class="input"><option value="All">All categories</option><option>Popular</option><option>Africa</option><option>Technology</option><option>E-commerce</option><option>Business</option><option>Personal</option></select>
+</div>
+<p id="pricing-count" class="text-caption-2 text-quaternary-label mt-3">— extensions</p>
+<div class="mt-4 card overflow-hidden overflow-x-auto">
+<table class="w-full text-subheadline min-w-[640px]">
+<thead class="bg-secondary-system-background text-tertiary-label text-caption-1 uppercase tracking-wide"><tr><th class="text-left py-3 px-4">Extension</th><th class="text-left py-3 px-4">Registration</th><th class="text-left py-3 px-4">Renewal</th><th class="text-left py-3 px-4">Transfer</th><th class="text-left py-3 px-4">Category</th><th class="text-left py-3 px-4"></th></tr></thead>
+<tbody id="pricing-tbody"></tbody>
+</table>
+</div>
+<div class="mt-4 text-caption-2 text-quaternary-label">Mock pricing — future pricing will be served from server-side registrar data. Renewal price is what you pay each year after the first year.</div>
+</main>
+<footer class="bg-secondary-system-background text-label border-t border-separator mt-8"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-caption-2 text-tertiary-label">© 2026 DomainPlatform</div></footer>
+<div id="toast-container" class="fixed bottom-4 right-4 z-50 w-80 space-y-2 pointer-events-none"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

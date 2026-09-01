@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>FAQ — DomainPlatform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/output.css">
+</head>
+<body class="bg-app text-primary">
+<header class="sticky top-0 z-40 material-thick border-b border-separator"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"><a href="index.html" class="font-bold flex gap-2 items-center text-label"><span class="w-8 h-8 bg-accent-500 text-brand-900 grid place-items-center rounded-lg">◈</span> DomainPlatform</a><nav class="hidden lg:flex gap-1 text-sm text-secondary-label"><a href="faq.html" class="px-3 py-2 bg-system-fill text-label rounded-lg">FAQ</a><a href="support.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Support</a><a href="domains.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Domains</a></nav><a href="contact.html" class="px-4 py-2 text-sm font-medium border border-opaque-separator rounded-lg text-secondary-label hover:bg-system-fill hover:text-label transition-colors">Contact</a><button id="mobile-menu-button" class="lg:hidden  p-3 flex items-center justify-center min-h-[44px] min-w-[44px]  border border-opaque-separator text-label rounded-lg ml-2" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">☰</button></div><div id="mobile-menu" class="hidden lg:hidden bg-system text-label border-t border-opaque-separator px-4 py-3"><a href="support.html" class="block py-2 hover:bg-system-fill">Support</a></div></header>
+<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<h1 class="text-title-1 font-outfit font-bold">Frequently asked questions</h1>
+<p class="text-body text-secondary-label mt-2">Accessible accordion — keyboard navigable, aria-expanded pattern.</p>
+<div class="mt-8 space-y-3">
+<div class="card hover-lift">
+<button data-accordion-button aria-expanded="false" aria-controls="faq1" class="w-full flex justify-between items-center p-5 text-left font-medium text-label"><span>How does domain registration work?</span> <span data-accordion-icon class="transition text-tertiary-label">▾</span></button>
+<div id="faq1" hidden class="px-5 pb-5 text-subheadline text-secondary-label">You search, we check availability (mock now), you add to cart and checkout. Real provisioning happens server-side via registrar API after payment.</div>
+</div>
+<div class="card hover-lift">
+<button data-accordion-button aria-expanded="false" aria-controls="faq2" class="w-full flex justify-between items-center p-5 text-left font-medium text-label"><span>Why is renewal pricing shown upfront?</span> <span data-accordion-icon class="transition text-tertiary-label">▾</span></button>
+<div id="faq2" hidden class="px-5 pb-5 text-subheadline text-secondary-label">Many registrars hide renewal fees. We show registration and renewal together so there are no surprises next year.</div>
+</div>
+<div class="card hover-lift">
+<button data-accordion-button aria-expanded="false" aria-controls="faq3" class="w-full flex justify-between items-center p-5 text-left font-medium text-label"><span>Can I transfer my domain?</span> <span data-accordion-icon class="transition text-tertiary-label">▾</span></button>
+<div id="faq3" hidden class="px-5 pb-5 text-subheadline text-secondary-label">Yes. You'll need the EPP code and the domain must be unlocked. Eligibility is validated before initiating a real transfer.</div>
+</div>
+<div class="card hover-lift">
+<button data-accordion-button aria-expanded="false" aria-controls="faq4" class="w-full flex justify-between items-center p-5 text-left font-medium text-label"><span>How do I manage DNS and nameservers?</span> <span data-accordion-icon class="transition text-tertiary-label">▾</span></button>
+<div id="faq4" hidden class="px-5 pb-5 text-subheadline text-secondary-label">From your domain detail page you can switch between default and custom nameservers and manage A, CNAME, MX, TXT records.</div>
+</div>
+<div class="card hover-lift">
+<button data-accordion-button aria-expanded="false" aria-controls="faq5" class="w-full flex justify-between items-center p-5 text-left font-medium text-label"><span>What is WHOIS privacy?</span> <span data-accordion-icon class="transition text-tertiary-label">▾</span></button>
+<div id="faq5" hidden class="px-5 pb-5 text-subheadline text-secondary-label">WHOIS privacy hides personal contact details from public lookup where allowed by the registry. Availability varies by TLD.</div>
+</div>
+<div class="card hover-lift">
+<button data-accordion-button aria-expanded="false" aria-controls="faq6" class="w-full flex justify-between items-center p-5 text-left font-medium text-label"><span>What happens when a domain expires?</span> <span data-accordion-icon class="transition text-tertiary-label">▾</span></button>
+<div id="faq6" hidden class="px-5 pb-5 text-subheadline text-secondary-label">You enter a grace period, then redemption (higher fee), then release. Enable auto-renew to avoid interruption.</div>
+</div>
+<div class="card hover-lift">
+<button data-accordion-button aria-expanded="false" aria-controls="faq7" class="w-full flex justify-between items-center p-5 text-left font-medium text-label"><span>How do I get support?</span> <span data-accordion-icon class="transition text-tertiary-label">▾</span></button>
+<div id="faq7" hidden class="px-5 pb-5 text-subheadline text-secondary-label">Use the <a href="support.html" class="underline text-brand-500">help center</a> or <a href="contact.html" class="underline text-brand-500">contact form</a>. Real ticketing will be integrated later.</div>
+</div>
+</div>
+</main>
+<div id="toast-container" class="fixed bottom-4 right-4 z-50 w-80 space-y-2 pointer-events-none"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
