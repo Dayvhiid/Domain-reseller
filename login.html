@@ -1,28 +1,257 @@
 ﻿<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Log in — DomainPlatform</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/output.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Log in — DomainPlatform</title>
+  <meta name="description" content="Log in to your DomainPlatform account." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/output.css">
+  <style>
+    :root {
+      --bg: #0A0A0C;
+      --bg-elevated: #141417;
+      --text-primary: #F2F2F0;
+      --text-secondary: #8B8B90;
+      --accent: #00F0FF;
+      --border: rgba(255,255,255,0.08);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #F5F5F7;
+        --bg-elevated: #FFFFFF;
+        --text-primary: #1D1D1F;
+        --text-secondary: #6E6E73;
+        --accent: #00A8E8;
+        --border: rgba(0,0,0,0.08);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+    }
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #000000;
+      color: #f4f4f5;
+    }
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .auth-wrap {
+      width: 100%;
+      max-width: 28rem;
+      margin: 0 auto;
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 28rem;
+      background-color: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      padding: 2.5rem;
+    }
+    @media (max-width: 400px) {
+      .auth-card { padding: 1.75rem; }
+    }
+    .auth-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 2rem;
+    }
+    .auth-logo-icon {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background-color: #22d3ee;
+      color: #000;
+      font-size: .875rem;
+      font-weight: 700;
+    }
+    .auth-title {
+      font-family: "Syne", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      margin-bottom: .25rem;
+    }
+    .auth-sub {
+      font-size: .8125rem;
+      color: #71717a;
+      margin-bottom: 1.75rem;
+    }
+    .auth-field {
+      margin-bottom: 1.25rem;
+    }
+    .auth-label {
+      display: block;
+      font-size: .8125rem;
+      font-weight: 500;
+      color: #d4d4d8;
+      margin-bottom: .5rem;
+    }
+    .auth-input {
+      width: 100%;
+      background-color: #09090b;
+      border: 1px solid #27272a;
+      border-radius: .5rem;
+      padding: .75rem 1rem;
+      font-size: .9375rem;
+      color: #ffffff;
+      font-family: inherit;
+      transition: border-color .15s ease-out, box-shadow .15s ease-out;
+      outline: none;
+    }
+    .auth-input::placeholder { color: #52525b; }
+    .auth-input:focus {
+      border-color: #06b6d4;
+      box-shadow: 0 0 0 2px rgba(6,182,212,0.15);
+    }
+    .auth-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      font-size: .8125rem;
+    }
+    .auth-check {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      color: #a1a1aa;
+      cursor: pointer;
+    }
+    .auth-check input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #06b6d4;
+      cursor: pointer;
+    }
+    .auth-forgot {
+      color: #71717a;
+      text-decoration: none;
+      transition: color .15s ease-out;
+      cursor: pointer;
+    }
+    .auth-forgot:hover { color: #22d3ee; }
+    .auth-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: .75rem;
+      font-size: .9375rem;
+      font-weight: 600;
+      color: #000;
+      background-color: #22d3ee;
+      border: none;
+      border-radius: .5rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background-color .15s ease-out, box-shadow .15s ease-out;
+      box-shadow: 0 0 15px rgba(6,182,212,0.25);
+      min-height: 48px;
+    }
+    .auth-btn:hover {
+      background-color: #67e8f9;
+      box-shadow: 0 0 24px rgba(6,182,212,0.4);
+    }
+    .auth-btn:active { transform: scale(.98); }
+    .auth-footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: .8125rem;
+      color: #71717a;
+    }
+    .auth-footer a {
+      color: #22d3ee;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .15s ease-out;
+    }
+    .auth-footer a:hover { color: #67e8f9; }
+    .auth-disclaimer {
+      text-align: center;
+      font-size: .6875rem;
+      color: #3f3f46;
+      margin-top: 1.5rem;
+    }
+    .auth-error {
+      display: none;
+      font-size: .75rem;
+      color: #f87171;
+      margin-top: .375rem;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
-<body class="bg-app text-primary">
-<header class="sticky top-0 z-40 material-thick border-b border-separator"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"><a href="index.html" class="font-bold flex gap-2 items-center text-label"><span class="w-8 h-8 bg-accent-500 text-brand-900 grid place-items-center rounded-lg">◈</span> DomainPlatform</a><a href="register.html" class="text-sm font-medium text-secondary-label">Need an account? <span class="text-accent-bright font-semibold">Create one</span></a></div></header>
-<main class="max-w-md mx-auto px-4 sm:px-6 lg:px-8 py-10">
-<div class="card p-8">
-<h1 class="text-title-2 font-outfit font-bold">Welcome back</h1>
-<p class="text-subheadline text-secondary-label mt-1">Frontend validation only — real auth will be WordPress/WHMCS/SSO later.</p>
-<form class="mt-6 space-y-4" data-validate novalidate onsubmit="event.preventDefault(); if(this.checkValidity()){ toast('Logged in (mock). Redirecting to dashboard...','success'); setTimeout(()=>location.href='client-dashboard.html',600); }">
-<div><label class="label" for="email">Email</label><input id="email" type="email" required placeholder="you@example.com" class="input"/><p data-error hidden class="error-text mt-1">Valid email required</p></div>
-<div><label class="label" for="pwd">Password</label><input id="pwd" type="password" required class="input"/><p data-error hidden class="error-text mt-1">Password required</p></div>
-<label class="flex items-center gap-2 text-subheadline text-secondary-label"><input type="checkbox" class="rounded accent-brand-500"/> Remember me</label>
-<button type="submit" class="btn btn-primary w-full">Log in</button>
-<a href="#" onclick="toast('Password reset is mock — real flow server-side.','default'); return false;" class="block text-center text-callout text-brand-500 mt-2">Forgot password?</a>
-</form>
-</div>
-<p class="text-caption-2 text-quaternary-label text-center mt-4">No real authentication yet. UI is structured for future WordPress integration.</p>
-</main>
-<div id="toast-container" class="fixed bottom-4 right-4 z-50 w-80 space-y-2 pointer-events-none"></div>
-<script type="module" src="js/main.js"></script>
+<body>
+  <div class="auth-page">
+    <div class="auth-wrap">
+      <div class="auth-card">
+      <a href="index.html" class="auth-logo">
+        <span class="auth-logo-icon">◈</span>
+        <span>DomainPlatform</span>
+      </a>
+
+      <h1 class="auth-title">Welcome back</h1>
+      <p class="auth-sub">Frontend validation only — real auth will be WordPress/WHMCS/SSO later.</p>
+
+      <form data-validate novalidate onsubmit="event.preventDefault(); if(this.checkValidity()){ toast('Logged in (mock). Redirecting to dashboard...','success'); setTimeout(()=>location.href='client-dashboard.html',600); }">
+        <div class="auth-field">
+          <label class="auth-label" for="email">Email</label>
+          <input id="email" type="email" required placeholder="you@example.com" class="auth-input" />
+          <p data-error class="auth-error">Valid email required</p>
+        </div>
+
+        <div class="auth-field">
+          <label class="auth-label" for="pwd">Password</label>
+          <input id="pwd" type="password" required placeholder="Enter your password" class="auth-input" />
+          <p data-error class="auth-error">Password required</p>
+        </div>
+
+        <div class="auth-row">
+          <label class="auth-check">
+            <input type="checkbox" />
+            Remember me
+          </label>
+          <a href="#" class="auth-forgot" onclick="toast('Password reset is mock — real flow server-side.','default'); return false;">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="auth-btn">Log in</button>
+      </form>
+
+      <p class="auth-footer">Need an account? <a href="register.html">Create one</a></p>
+    </div>
+
+      <p class="auth-disclaimer">No real authentication yet.</p>
+    </div>
+  </div>
+
+  <div id="toast-container" class="fixed bottom-4 right-4 z-50 w-80 space-y-2 pointer-events-none"></div>
+  <script src="js/mock-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/domain-search.js"></script>
+  <script src="js/ui.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

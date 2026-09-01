@@ -148,6 +148,284 @@
    Index page — dark premium techy design
    ============================================================ */
 
+/* ---- Site header (glassmorphism) ---- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid #27272a;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background-color: rgba(0,0,0,0.7);
+}
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 1rem;
+}
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: "Syne", "Inter", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+.site-logo-icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: #22d3ee;
+  color: #000;
+  font-size: .875rem;
+  font-weight: 700;
+}
+.site-nav {
+  display: none;
+  align-items: center;
+  gap: .25rem;
+}
+@media (min-width: 1024px) {
+  .site-nav { display: flex; }
+}
+.site-nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: .5rem .75rem;
+  font-size: .875rem;
+  font-weight: 500;
+  color: #d4d4d8;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: color .15s ease-out, background-color .15s ease-out;
+  min-height: 44px;
+}
+.site-nav-link:hover {
+  color: #22d3ee;
+  background-color: rgba(255,255,255,0.04);
+}
+.site-actions {
+  display: none;
+  align-items: center;
+  gap: .5rem;
+}
+@media (min-width: 1024px) {
+  .site-actions { display: flex; }
+}
+.site-cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5rem;
+  color: #a1a1aa;
+  border-radius: 8px;
+  transition: color .15s ease-out, background-color .15s ease-out;
+  text-decoration: none;
+}
+.site-cart:hover {
+  color: #d4d4d8;
+  background-color: rgba(255,255,255,0.04);
+}
+.site-cart-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background-color: #22d3ee;
+  color: #000;
+  font-size: 10px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+.site-login {
+  display: inline-flex;
+  align-items: center;
+  padding: .5rem 1rem;
+  font-size: .875rem;
+  font-weight: 500;
+  color: #d4d4d8;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: color .15s ease-out;
+  min-height: 44px;
+}
+.site-login:hover {
+  color: #ffffff;
+}
+.site-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5rem 1rem;
+  font-size: .875rem;
+  font-weight: 600;
+  color: #000;
+  background-color: #22d3ee;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color .15s ease-out, box-shadow .15s ease-out;
+  min-height: 40px;
+}
+.site-cta:hover {
+  background-color: #67e8f9;
+  box-shadow: 0 0 16px rgba(6,182,212,0.3);
+}
+.site-mobile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #a1a1aa;
+  cursor: pointer;
+  transition: color .15s ease-out, background-color .15s ease-out;
+}
+.site-mobile-toggle:hover {
+  color: #d4d4d8;
+  background-color: rgba(255,255,255,0.06);
+}
+@media (min-width: 1024px) {
+  .site-mobile-toggle { display: none; }
+}
+
+/* ---- Mobile drawer ---- */
+.mobile-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+}
+.mobile-drawer.hidden {
+  display: none;
+}
+.mobile-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0,0,0,0.8);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.mobile-drawer-panel {
+  position: relative;
+  width: min(320px, 85vw);
+  height: 100%;
+  background-color: #0a0a0c;
+  border-left: 1px solid #27272a;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  animation: drawer-slide .2s ease-out;
+}
+@keyframes drawer-slide {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #27272a;
+}
+.mobile-drawer-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #a1a1aa;
+  cursor: pointer;
+  transition: color .15s ease-out, background-color .15s ease-out;
+}
+.mobile-drawer-close:hover {
+  color: #d4d4d8;
+  background-color: rgba(255,255,255,0.06);
+}
+.mobile-drawer-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.25rem;
+  flex: 1;
+}
+.mobile-drawer-link {
+  display: flex;
+  align-items: center;
+  padding: .875rem 0;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: #d4d4d8;
+  text-decoration: none;
+  border-bottom: 1px solid #1c1c1f;
+  transition: color .15s ease-out;
+  min-height: 48px;
+}
+.mobile-drawer-link:hover {
+  color: #22d3ee;
+}
+.mobile-drawer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  padding: 1.25rem;
+  border-top: 1px solid #27272a;
+}
+.mobile-drawer-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .875rem;
+  font-size: .9375rem;
+  font-weight: 500;
+  color: #d4d4d8;
+  text-decoration: none;
+  border: 1px solid #3f3f46;
+  border-radius: 10px;
+  transition: color .15s ease-out, border-color .15s ease-out;
+  min-height: 48px;
+}
+.mobile-drawer-login:hover {
+  color: #ffffff;
+  border-color: #52525b;
+}
+.mobile-drawer-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .875rem;
+  font-size: .9375rem;
+  font-weight: 600;
+  color: #000;
+  background-color: #22d3ee;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background-color .15s ease-out, box-shadow .15s ease-out;
+  min-height: 48px;
+}
+.mobile-drawer-cta:hover {
+  background-color: #67e8f9;
+  box-shadow: 0 0 20px rgba(6,182,212,0.3);
+}
+
 /* ---- Site logo (Syne display face) ---- */
 .site-logo { font-family: "Syne", "Inter", system-ui, sans-serif; }
 

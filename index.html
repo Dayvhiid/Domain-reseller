@@ -35,49 +35,62 @@
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 bg-bg-elevated text-primary px-4 py-2 rounded-lg">Skip to content</a>
 
   <!-- Header -->
-  <header class="sticky top-0 z-40 border-b" style="border-color: var(--border); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background-color: color-mix(in srgb, var(--bg) 85%, transparent);">
+  <header class="site-header">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex h-16 items-center justify-between gap-4">
-        <a href="index.html" class="flex items-center gap-2 font-syne font-bold text-xl tracking-tight text-primary">
-          <span class="w-8 h-8 rounded-lg grid place-items-center text-sm" style="background-color: var(--accent); color: #000;">◈</span>
+      <div class="site-header-inner">
+        <a href="index.html" class="site-logo">
+          <span class="site-logo-icon">◈</span>
           <span>DomainPlatform</span>
         </a>
-        <nav class="hidden lg:flex items-center gap-1 text-sm font-medium" style="color: var(--text-secondary);">
-          <a href="domains.html" class="px-3 py-2 rounded-lg hover:text-primary transition-colors" style="color: var(--text-secondary);">Domains</a>
-          <a href="pricing.html" class="px-3 py-2 rounded-lg hover:text-primary transition-colors" style="color: var(--text-secondary);">Pricing</a>
-          <a href="transfer-domain.html" class="px-3 py-2 rounded-lg hover:text-primary transition-colors" style="color: var(--text-secondary);">Transfer</a>
-          <a href="whois.html" class="px-3 py-2 rounded-lg hover:text-primary transition-colors" style="color: var(--text-secondary);">WHOIS</a>
-          <a href="support.html" class="px-3 py-2 rounded-lg hover:text-primary transition-colors" style="color: var(--text-secondary);">Support</a>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="domains.html" class="site-nav-link">Domains</a>
+          <a href="pricing.html" class="site-nav-link">Pricing</a>
+          <a href="transfer-domain.html" class="site-nav-link">Transfer</a>
+          <a href="whois.html" class="site-nav-link">WHOIS</a>
+          <a href="support.html" class="site-nav-link">Support</a>
         </nav>
-        <div class="hidden lg:flex items-center gap-2">
-          <a href="cart.html" class="relative p-2 rounded-lg transition-colors" style="color: var(--text-secondary);" aria-label="Cart">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6h15l-1.5 9h-13z"/><path d="M6 6L5 2H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
-            <span data-cart-count class="hidden absolute -top-1 -right-1 text-[10px] w-5 h-5 grid place-items-center rounded-full" style="background-color: var(--accent); color: #000;">0</span>
+        <div class="site-actions">
+          <a href="cart.html" class="site-cart" aria-label="Cart">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6h15l-1.5 9h-13z"/><path d="M6 6L5 2H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+            <span data-cart-count class="site-cart-badge hidden">0</span>
           </a>
-          <a href="login.html" class="px-4 py-2 rounded-lg text-sm font-medium transition-colors" style="color: var(--text-secondary);">Log in</a>
-          <a href="register.html" class="btn btn-primary btn-sm">Create account</a>
+          <a href="login.html" class="site-login">Log in</a>
+          <a href="register.html" class="site-cta">Create account</a>
         </div>
-        <button id="mobile-menu-button" class="lg:hidden p-3 rounded-lg border min-h-[44px] min-w-[44px] flex items-center justify-center" style="border-color: var(--border); color: var(--text-primary);" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <button id="mobile-menu-button" class="site-mobile-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
           <svg id="icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
           <svg id="icon-close" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
     </div>
-    <div id="mobile-menu" class="hidden lg:hidden border-t" style="border-color: var(--border); background-color: var(--bg-elevated); color: var(--text-primary);">
-      <nav class="px-4 py-4 space-y-1">
-        <a href="domains.html" class="block px-3 py-3 rounded-lg hover:bg-system-fill font-medium">Domains</a>
-        <a href="pricing.html" class="block px-3 py-3 rounded-lg hover:bg-system-fill font-medium">Pricing</a>
-        <a href="transfer-domain.html" class="block px-3 py-3 rounded-lg hover:bg-system-fill font-medium">Transfer Domain</a>
-        <a href="whois.html" class="block px-3 py-3 rounded-lg hover:bg-system-fill font-medium">WHOIS Lookup</a>
-        <a href="support.html" class="block px-3 py-3 rounded-lg hover:bg-system-fill font-medium">Support</a>
-        <div class="pt-4 border-t mt-3 space-y-2" style="border-color: var(--border);">
-          <a href="cart.html" class="block px-3 py-3 rounded-lg font-medium">Cart <span data-cart-count class="hidden" style="background-color: var(--accent); color: #000;">0</span></a>
-          <a href="login.html" class="block px-3 py-3 rounded-lg text-center border font-medium" style="border-color: var(--border);">Log in</a>
-          <a href="register.html" class="block px-3 py-3 rounded-lg text-center btn btn-primary">Create account</a>
-        </div>
-      </nav>
-    </div>
   </header>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="mobile-drawer hidden">
+    <div class="mobile-drawer-backdrop" data-mobile-close></div>
+    <div class="mobile-drawer-panel">
+      <div class="mobile-drawer-header">
+        <a href="index.html" class="site-logo">
+          <span class="site-logo-icon">◈</span>
+          <span>DomainPlatform</span>
+        </a>
+        <button id="mobile-menu-close" class="mobile-drawer-close" aria-label="Close menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <nav class="mobile-drawer-nav" aria-label="Mobile">
+        <a href="domains.html" class="mobile-drawer-link">Domains</a>
+        <a href="pricing.html" class="mobile-drawer-link">Pricing</a>
+        <a href="transfer-domain.html" class="mobile-drawer-link">Transfer Domain</a>
+        <a href="whois.html" class="mobile-drawer-link">WHOIS Lookup</a>
+        <a href="support.html" class="mobile-drawer-link">Support</a>
+      </nav>
+      <div class="mobile-drawer-actions">
+        <a href="login.html" class="mobile-drawer-login">Log in</a>
+        <a href="register.html" class="mobile-drawer-cta">Create account</a>
+      </div>
+    </div>
+  </div>
 
   <main id="main">
     <!-- Hero — the one bold moment: domain search bar is the visual anchor -->
