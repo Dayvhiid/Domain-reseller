@@ -37,8 +37,8 @@ function initReveal() {
 async function initPricing() {
   const search = document.getElementById("pricing-search");
   const filter = document.getElementById("pricing-category");
-  const tbody = document.getElementById("pricing-tbody");
-  if (!tbody) return;
+  const grid = document.getElementById("pricing-tbody");
+  if (!grid) return;
   
   let data = [];
   
@@ -55,16 +55,29 @@ async function initPricing() {
     const cat = filter?.value || "All";
     const filtered = data.filter(r => (cat === "All" || r.category === cat) && r.tld.toLowerCase().includes(q));
     
-    tbody.innerHTML = filtered.map(r => `
-      <tr class="border-t border-separator hover:bg-secondary-system-background">
-        <td class="py-3 px-4 font-mono font-medium">${r.tld}</td>
-        <td class="py-3 px-4">${formatPrice(r.registration)}</td>
-        <td class="py-3 px-4">${formatPrice(r.renewal)}</td>
-        <td class="py-3 px-4">${formatPrice(r.transfer)}</td>
-        <td class="py-3 px-4"><span class="badge badge-neutral text-xs">${r.category}</span></td>
-        <td class="py-3 px-4"><a href="search-results.html?domain=example${r.tld}" class="text-brand-500 hover:underline text-sm font-medium">Check</a></td>
-      </tr>
-    `).join("") || `<tr><td colspan="6" class="py-8 text-center text-tertiary-label">No extensions match your filter.</td></tr>`;
+    grid.innerHTML = filtered.map(r => `
+      <div class="ext-card">
+        <div class="ext-card-top">
+          <span class="ext-name">${r.tld}</span>
+          <span class="ext-category">${r.category}</span>
+        </div>
+        <div class="ext-prices">
+          <div class="ext-price-item">
+            <span class="ext-price-label">Registration</span>
+            <span class="ext-price-value">${formatPrice(r.registration)}/yr</span>
+          </div>
+          <div class="ext-price-item">
+            <span class="ext-price-label">Renewal</span>
+            <span class="ext-price-value">${formatPrice(r.renewal)}/yr</span>
+          </div>
+          <div class="ext-price-item">
+            <span class="ext-price-label">Transfer</span>
+            <span class="ext-price-value">${formatPrice(r.transfer)}</span>
+          </div>
+        </div>
+        <a href="search-results.html?domain=example${r.tld}" class="ext-action">Check availability</a>
+      </div>
+    `).join("") || `<div class="ext-empty">No extensions match your filter.</div>`;
     
     document.getElementById("pricing-count").textContent = `${filtered.length} extensions`;
   }
