@@ -1,33 +1,412 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Cart — DomainPlatform</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/output.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cart — DomainPlatform</title>
+  <meta name="description" content="Review your domain selections and proceed to checkout." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/output.css">
+  <style>
+    :root {
+      --bg: #0A0A0C;
+      --bg-elevated: #141417;
+      --text-primary: #F2F2F0;
+      --text-secondary: #8B8B90;
+      --accent: #00F0FF;
+      --border: rgba(255,255,255,0.08);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #F5F5F7;
+        --bg-elevated: #FFFFFF;
+        --text-primary: #1D1D1F;
+        --text-secondary: #6E6E73;
+        --accent: #00A8E8;
+        --border: rgba(0,0,0,0.08);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #09090b;
+      color: #f4f4f5;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      border-bottom: 1px solid #27272a;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      background-color: rgba(0,0,0,0.7);
+    }
+    .site-header-inner {
+      max-width: 80rem; margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; gap: 1rem;
+    }
+    .site-logo {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: "Syne", sans-serif; font-weight: 700; font-size: 1.125rem;
+      color: #ffffff; letter-spacing: -0.02em; flex-shrink: 0;
+    }
+    .site-logo-icon {
+      display: grid; place-items: center;
+      width: 32px; height: 32px; border-radius: 8px;
+      background-color: #22d3ee; color: #000;
+      font-size: .875rem; font-weight: 700;
+    }
+    .header-nav { display: none; align-items: center; gap: .25rem; }
+    @media (min-width: 768px) { .header-nav { display: flex; } }
+    .header-nav-link {
+      display: inline-flex; align-items: center;
+      padding: .5rem .75rem; font-size: .8125rem; font-weight: 500;
+      color: #a1a1aa; border-radius: 8px;
+      transition: color .15s, background-color .15s;
+    }
+    .header-nav-link:hover { color: #d4d4d8; background-color: rgba(255,255,255,0.04); }
+    .checkout-link {
+      display: inline-flex; align-items: center; gap: .375rem;
+      padding: .5rem 1.25rem; border-radius: 8px;
+      font-size: .8125rem; font-weight: 600;
+      background-color: #22d3ee; color: #000;
+      transition: all .15s;
+    }
+    .checkout-link:hover { background-color: #67e8f9; box-shadow: 0 0 12px rgba(6,182,212,0.3); }
+
+    /* Page */
+    .cart-page {
+      max-width: 72rem; margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    .cart-header {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .cart-title {
+      font-family: "Syne", sans-serif; font-weight: 800;
+      font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.15;
+      letter-spacing: -0.03em; color: #ffffff;
+    }
+    .cart-sub {
+      font-size: 1rem; color: #71717a; margin-top: .25rem;
+    }
+    .clear-btn {
+      background: none; border: none; cursor: pointer;
+      font-size: .75rem; font-weight: 500; font-family: inherit;
+      color: #71717a; padding: .375rem .75rem;
+      border-radius: 6px; transition: all .15s;
+    }
+    .clear-btn:hover { color: #f87171; background-color: rgba(248,113,113,0.08); }
+
+    /* 2-col grid */
+    .cart-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    @media (min-width: 1024px) {
+      .cart-grid { grid-template-columns: 2fr 1fr; }
+    }
+
+    /* Cards */
+    .card {
+      background-color: #121214;
+      border: 1px solid #27272a;
+      border-radius: 1rem;
+    }
+
+    /* Cart items */
+    .cart-items { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .cart-item {
+      display: flex; flex-direction: column; gap: 1rem;
+      padding: 1.25rem;
+      background-color: #18181b;
+      border: 1px solid #27272a;
+      border-radius: .75rem;
+      transition: border-color .15s;
+    }
+    .cart-item:hover { border-color: #3f3f46; }
+    .cart-item-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 1rem;
+    }
+    .cart-item-info { min-width: 0; flex: 1; }
+    .cart-item-domain {
+      font-family: "JetBrains Mono", monospace; font-weight: 600;
+      font-size: 1rem; color: #ffffff;
+    }
+    .cart-item-meta {
+      font-size: .75rem; color: #52525b; margin-top: .25rem;
+    }
+    .cart-item-price {
+      font-weight: 700; color: #ffffff;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .cart-item-controls {
+      display: flex; align-items: center; gap: .75rem;
+      flex-wrap: wrap;
+    }
+    .cart-select {
+      padding: .375rem .75rem; border-radius: 6px;
+      background-color: #09090b; border: 1px solid #27272a;
+      color: #d4d4d8; font-size: .8125rem; font-family: inherit;
+      cursor: pointer; transition: border-color .15s;
+      min-height: 36px;
+    }
+    .cart-select:focus { outline: none; border-color: #06b6d4; }
+    .cart-select option { background-color: #121214; color: #d4d4d8; }
+    .auto-renew-row {
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .75rem; color: #71717a;
+    }
+    .toggle {
+      position: relative; display: inline-flex; cursor: pointer;
+    }
+    .toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .toggle-track {
+      width: 32px; height: 18px; border-radius: 9999px;
+      background-color: #3f3f46; transition: background-color .2s;
+      position: relative;
+    }
+    .toggle-track::after {
+      content: ""; position: absolute;
+      top: 2px; left: 2px;
+      width: 14px; height: 14px; border-radius: 9999px;
+      background-color: #a1a1aa; transition: transform .2s, background-color .2s;
+    }
+    .toggle input:checked + .toggle-track { background-color: #22d3ee; }
+    .toggle input:checked + .toggle-track::after {
+      transform: translateX(14px); background-color: #000;
+    }
+    .remove-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 8px;
+      border: 1px solid #27272a; background: transparent;
+      color: #71717a; cursor: pointer;
+      transition: all .15s; flex-shrink: 0;
+    }
+    .remove-btn:hover { color: #f87171; border-color: rgba(248,113,113,0.3); background-color: rgba(248,113,113,0.06); }
+
+    /* Promo code */
+    .promo-row {
+      display: flex; gap: .5rem; padding: 1.25rem 1.5rem;
+      border-top: 1px solid #1c1c1f;
+    }
+    .promo-input {
+      flex: 1; padding: .5rem .875rem; border-radius: 6px;
+      background-color: #09090b; border: 1px solid #27272a;
+      color: #d4d4d8; font-size: .8125rem; font-family: inherit;
+      transition: border-color .15s;
+    }
+    .promo-input::placeholder { color: #52525b; }
+    .promo-input:focus { outline: none; border-color: #06b6d4; }
+    .promo-btn {
+      padding: .5rem 1rem; border-radius: 6px;
+      background-color: transparent; border: 1px solid #3f3f46;
+      color: #a1a1aa; font-size: .8125rem; font-weight: 600;
+      cursor: pointer; font-family: inherit; transition: all .15s;
+      white-space: nowrap;
+    }
+    .promo-btn:hover { color: #d4d4d8; border-color: #52525b; }
+
+    /* Summary */
+    .summary-card {
+      position: sticky; top: 80px;
+      padding: 1.5rem;
+    }
+    .summary-title {
+      font-family: "Syne", sans-serif; font-weight: 700;
+      font-size: .9375rem; color: #ffffff; margin-bottom: 1.25rem;
+    }
+    .summary-rows { display: flex; flex-direction: column; gap: .75rem; }
+    .summary-row {
+      display: flex; justify-content: space-between;
+      font-size: .8125rem;
+    }
+    .summary-label { color: #71717a; }
+    .summary-value { color: #d4d4d8; font-weight: 500; font-variant-numeric: tabular-nums; }
+    .summary-value--free { color: #22d3ee; font-weight: 600; }
+    .summary-total {
+      display: flex; justify-content: space-between;
+      padding-top: 1rem; margin-top: .75rem;
+      border-top: 1px solid #27272a;
+      font-size: 1.125rem; font-weight: 700; color: #ffffff;
+    }
+    .summary-total-value { font-variant-numeric: tabular-nums; }
+    .checkout-btn {
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      width: 100%; padding: .875rem;
+      margin-top: 1.25rem;
+      font-size: .9375rem; font-weight: 600;
+      color: #000; background-color: #22d3ee;
+      border: none; border-radius: .5rem;
+      cursor: pointer; font-family: inherit;
+      transition: all .15s;
+      box-shadow: 0 0 20px rgba(6,182,212,0.2);
+      min-height: 48px;
+    }
+    .checkout-btn:hover {
+      background-color: #67e8f9;
+      box-shadow: 0 0 28px rgba(6,182,212,0.35);
+    }
+    .continue-link {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; padding: .75rem;
+      margin-top: .75rem;
+      font-size: .8125rem; font-weight: 500;
+      color: #71717a; background: transparent;
+      border: 1px solid #27272a; border-radius: .5rem;
+      text-decoration: none; transition: all .15s;
+    }
+    .continue-link:hover { color: #d4d4d8; border-color: #3f3f46; }
+
+    /* Empty state */
+    .empty-state {
+      border: 1px dashed #27272a;
+      background-color: rgba(18,18,20,0.5);
+      border-radius: 1rem;
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+    .empty-icon {
+      width: 56px; height: 56px; border-radius: 12px;
+      background-color: rgba(6,182,212,0.08); color: #22d3ee;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+    .empty-icon svg { width: 28px; height: 28px; }
+    .empty-title {
+      font-family: "Syne", sans-serif; font-weight: 700;
+      font-size: 1rem; color: #ffffff; margin-bottom: .375rem;
+    }
+    .empty-desc {
+      font-size: .8125rem; color: #52525b; margin-bottom: 1.25rem;
+    }
+    .empty-btn {
+      display: inline-flex; align-items: center; gap: .375rem;
+      padding: .625rem 1.5rem; border-radius: 9999px;
+      background-color: #22d3ee; color: #000;
+      font-size: .8125rem; font-weight: 600;
+      text-decoration: none; transition: all .15s;
+      box-shadow: 0 0 12px rgba(6,182,212,0.2);
+    }
+    .empty-btn:hover {
+      background-color: #67e8f9;
+      box-shadow: 0 0 20px rgba(6,182,212,0.3);
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid #27272a; padding: 1.5rem;
+      text-align: center; font-size: .8125rem; color: #3f3f46;
+      margin-top: 2rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
 </head>
-<body class="bg-app text-primary">
-<header class="sticky top-0 z-40 material-thick border-b border-separator"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"><a href="index.html" class="font-bold flex gap-2 items-center text-label"><span class="w-8 h-8 bg-accent-500 text-brand-900 grid place-items-center rounded-lg">◈</span> DomainPlatform</a><nav class="hidden lg:flex gap-1 text-sm text-secondary-label"><a href="domains.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Domains</a><a href="pricing.html" class="px-3 py-2 hover:bg-system-fill hover:text-label rounded-lg transition-colors">Pricing</a></nav><a href="checkout.html" class="btn btn-primary btn-sm">Checkout</a><button id="mobile-menu-button" class="lg:hidden  p-3 flex items-center justify-center min-h-[44px] min-w-[44px]  border border-opaque-separator text-label rounded-lg ml-2" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">☰</button></div><div id="mobile-menu" class="hidden lg:hidden bg-system text-label border-t border-opaque-separator px-4 py-3"><a href="pricing.html" class="block py-2 hover:bg-system-fill">Pricing</a></div></header>
-<main id="cart-root" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-<h1 class="text-title-1 font-outfit font-bold">Your cart</h1>
-<p class="text-body text-secondary-label mt-2">Persisted in localStorage — mock cart, no real payment.</p>
-<div id="cart-empty" class="mt-8 card p-10 text-center" hidden>
-<p class="font-medium text-label">Your cart is empty</p><p class="text-subheadline text-secondary-label mt-1">Search for a domain to get started.</p><a href="index.html" class="mt-4 btn btn-primary">Search domains</a>
-</div>
-<div id="cart-list" class="mt-6 space-y-3"></div>
-<div id="cart-summary" class="mt-6 grid lg:grid-cols-3 gap-6">
-<div class="lg:col-span-2"><button id="cart-clear" class="text-callout text-secondary-label hover:text-danger transition-colors">Clear cart</button></div>
-<div class="card p-6 space-y-3">
-<div class="flex justify-between text-subheadline"><span class="text-secondary-label">Subtotal</span><span id="cart-subtotal" class="font-semibold text-label">—</span></div>
-<div class="flex justify-between text-subheadline"><span class="text-secondary-label">Taxes</span><span id="cart-tax" class="font-semibold text-label">—</span></div>
-<div class="text-caption-1 text-quaternary-label">Tax placeholder — real calculation server-side.</div>
-<div class="border-t border-separator pt-3 flex justify-between font-bold text-label text-title-3 font-outfit"><span>Total</span><span id="cart-total">—</span></div>
-<a href="checkout.html" class="mt-2 btn btn-primary w-full justify-center">Proceed to checkout</a>
-<a href="index.html" class="btn btn-outline w-full justify-center">Continue shopping</a>
-</div>
-</div>
-</main>
-<div id="toast-container" class="fixed bottom-4 right-4 z-50 w-80 space-y-2 pointer-events-none"></div>
-<script type="module" src="js/main.js"></script>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="site-logo">
+        <span class="site-logo-icon">◈</span>
+        <span>DomainPlatform</span>
+      </a>
+      <nav class="header-nav">
+        <a href="domains.html" class="header-nav-link">Domains</a>
+        <a href="pricing.html" class="header-nav-link">Pricing</a>
+      </nav>
+      <a href="checkout.html" class="checkout-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-13z"/><path d="M6 6L5 2H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+        Checkout
+      </a>
+    </div>
+  </header>
+
+  <main id="cart-root">
+    <div class="cart-page">
+      <!-- Header -->
+      <div class="cart-header">
+        <div>
+          <h1 class="cart-title">Your cart</h1>
+          <p class="cart-sub">Persisted in localStorage — mock cart, no real payment.</p>
+        </div>
+        <button id="cart-clear" class="clear-btn">Clear cart</button>
+      </div>
+
+      <!-- Empty state -->
+      <div id="cart-empty" class="empty-state" hidden>
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </div>
+        <div class="empty-title">Your cart is empty</div>
+        <div class="empty-desc">Search for a domain to get started.</div>
+        <a href="index.html" class="empty-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          Search domains
+        </a>
+      </div>
+
+      <!-- Cart items + summary -->
+      <div id="cart-summary" class="cart-grid">
+        <div>
+          <div class="card">
+            <div id="cart-list" class="cart-items"></div>
+            <div class="promo-row">
+              <input type="text" placeholder="Promo code" class="promo-input" />
+              <button onclick="toast('Promo codes are mock — not functional','default')" class="promo-btn">Apply</button>
+            </div>
+          </div>
+        </div>
+        <div class="card summary-card">
+          <div class="summary-title">Order summary</div>
+          <div class="summary-rows">
+            <div class="summary-row">
+              <span class="summary-label">Subtotal</span>
+              <span id="cart-subtotal" class="summary-value">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Estimated taxes</span>
+              <span id="cart-tax" class="summary-value">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">WHOIS privacy</span>
+              <span class="summary-value summary-value--free">FREE</span>
+            </div>
+          </div>
+          <div class="summary-total">
+            <span>Total</span>
+            <span id="cart-total" class="summary-total-value">—</span>
+          </div>
+          <a href="checkout.html" class="checkout-btn">
+            Proceed to checkout
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="index.html" class="continue-link">Continue shopping</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">&copy; 2026 DomainPlatform. All rights reserved.</footer>
+
+  <div id="toast-container" class="fixed bottom-4 right-4 z-50 w-80 space-y-2 pointer-events-none"></div>
+  <script src="js/mock-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/domain-search.js"></script>
+  <script src="js/ui.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
