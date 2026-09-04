@@ -29,6 +29,7 @@
       }
     }
     .font-syne { font-family: "Syne", "Inter", system-ui, sans-serif; }
+    #legal-menu a:hover { color: #22d3ee; background-color: rgba(255,255,255,0.04); }
   </style>
 </head>
 <body class="bg-bg text-primary antialiased">
@@ -48,6 +49,19 @@
           <a href="transfer-domain.html" class="site-nav-link">Transfer</a>
           <a href="whois.html" class="site-nav-link">WHOIS</a>
           <a href="support.html" class="site-nav-link">Support</a>
+          <div class="relative" id="legal-dropdown">
+            <button class="site-nav-link" style="background:none;border:none;cursor:pointer;" onclick="document.getElementById('legal-menu').classList.toggle('hidden')" aria-expanded="false" aria-controls="legal-menu">
+              Legal
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="margin-left:4px;"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div id="legal-menu" class="hidden" style="position:absolute;left:0;top:100%;padding-top:8px;z-index:50;">
+              <div style="background:#141417;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:8px;min-width:180px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+                <a href="terms.html" style="display:block;padding:8px 12px;font-size:14px;color:#a1a1aa;border-radius:8px;text-decoration:none;transition:color .15s,background .15s;">Terms &amp; Conditions</a>
+                <a href="privacy.html" style="display:block;padding:8px 12px;font-size:14px;color:#a1a1aa;border-radius:8px;text-decoration:none;transition:color .15s,background .15s;">Privacy Policy</a>
+                <a href="refund.html" style="display:block;padding:8px 12px;font-size:14px;color:#a1a1aa;border-radius:8px;text-decoration:none;transition:color .15s,background .15s;">Refund Policy</a>
+              </div>
+            </div>
+          </div>
         </nav>
         <div class="site-actions">
           <a href="cart.html" class="site-cart" aria-label="Cart">
@@ -84,6 +98,10 @@
         <a href="transfer-domain.html" class="mobile-drawer-link">Transfer Domain</a>
         <a href="whois.html" class="mobile-drawer-link">WHOIS Lookup</a>
         <a href="support.html" class="mobile-drawer-link">Support</a>
+        <div class="border-t border-[var(--border)] my-2"></div>
+        <a href="terms.html" class="mobile-drawer-link">Terms &amp; Conditions</a>
+        <a href="privacy.html" class="mobile-drawer-link">Privacy Policy</a>
+        <a href="refund.html" class="mobile-drawer-link">Refund Policy</a>
       </nav>
       <div class="mobile-drawer-actions">
         <a href="login.html" class="mobile-drawer-login">Log in</a>
@@ -389,5 +407,14 @@
   <script src="js/domain-search.js"></script>
   <script src="js/ui.js"></script>
   <script type="module" src="js/main.js"></script>
+  <script>
+    document.addEventListener('click', function(e) {
+      var dropdown = document.getElementById('legal-dropdown');
+      var menu = document.getElementById('legal-menu');
+      if (dropdown && menu && !dropdown.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+  </script>
 </body>
 </html>
